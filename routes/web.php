@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\QrCodeController;
+use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\ScheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +26,13 @@ Route::middleware(['auth'])->group(function () {
     })->name('home');
     Route::resource('user', UserController::class);
 });
+Route::middleware(['auth'])->group(function () {
+    Route::resource('subject', SubjectController::class);
+});
+Route::middleware(['auth'])->group(function () {
+    Route::resource('schedule', ScheduleController::class);
+});
+
+Route::get('showqrcode', [QrCodeController::class, 'showQrcode'])->name('showqrcode');
+Route::get('createqrcode', [ScheduleController::class, 'createQrcode'])->name('createqrcode');
+Route::post('generateqrcode', [ScheduleController::class, 'generateQrcode'])->name('generateqrcode');

@@ -17,8 +17,8 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $users = DB::table('users')
-            ->when($request->input('name'), function ($query, $name) {
-                return $query->where('name', 'like', '%' . $name . '%');
+            ->when($request->input('name'), function ($query, $search) {
+                return $query->where('name', 'like', '%' . $search . '%');
             })
             ->select('id', 'name', 'email', 'phone', DB::raw('DATE_FORMAT(created_at, "%d %M %Y") as created_at'))
             ->orderBy('id', 'desc')

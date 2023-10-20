@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Subject;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,11 +17,28 @@ class ScheduleFactory extends Factory
      */
     public function definition(): array
     {
+        // $table->foreignId('subject_id')->constrained('subjects');
+        // $table->string('hari')->nullable();
+        // $table->string('jam_mulai')->nullable();
+        // $table->string('jam_selesai')->nullable();
+        // $table->string('ruangan')->nullable();
+        // $table->string('kode_absensi')->nullable();
+        // $table->string('tahun_akademik')->nullable();
+        // $table->string('semester')->nullable();
+        // $table->string('created_by')->nullable();
+        // $table->string('updated_by')->nullable();
+
         return [
-            'student_id' => 2,
-            'subject_id' => 5,
-            'schedule_date' => fake()->dateTime(),
-            'schedule_type' => 'online',
+            'subject_id' => Subject::factory(),
+            'hari' => $this->faker->randomElement(['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu']),
+            'jam_mulai' => $this->faker->randomElement(['07:00', '08:00', '09:00', '10:00', '11:00', '12:00']),
+            'jam_selesai' => $this->faker->randomElement(['09:00', '10:00', '11:00', '12:00', '13:00', '14:00']),
+            'ruangan' => $this->faker->randomElement(['A1','A2','A3','A4','A5','A6']),
+            'kode_absensi' => $this->faker->randomElement(['A1','A2','A3','A4','A5','A6']),
+            'tahun_akademik' => $this->faker->randomElement(['2021/2022', '2022/2023', '2023/2024']), 
+            'semester' => $this->faker->randomElement(['Ganjil', 'Genap']),
+            'created_by' => $this->faker->randomElement(['1', '2', '3']),
+            'updated_by' => $this->faker->randomElement(['1', '2', '3']),
         ];
     }
 }
