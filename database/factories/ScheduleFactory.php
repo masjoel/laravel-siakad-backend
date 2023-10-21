@@ -17,17 +17,6 @@ class ScheduleFactory extends Factory
      */
     public function definition(): array
     {
-        // $table->foreignId('subject_id')->constrained('subjects');
-        // $table->string('hari')->nullable();
-        // $table->string('jam_mulai')->nullable();
-        // $table->string('jam_selesai')->nullable();
-        // $table->string('ruangan')->nullable();
-        // $table->string('kode_absensi')->nullable();
-        // $table->string('tahun_akademik')->nullable();
-        // $table->string('semester')->nullable();
-        // $table->string('created_by')->nullable();
-        // $table->string('updated_by')->nullable();
-
         return [
             'subject_id' => Subject::factory(),
             'hari' => $this->faker->randomElement(['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu']),

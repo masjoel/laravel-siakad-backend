@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('kode_absensi');
             $table->string('tahun_akademik');
             $table->string('semester');
-            $table->string('pertemuan');
-            $table->string('status');
+            $table->string('pertemuan')->nullable();
+            $table->string('status')->nullable();
             $table->string('keterangan')->nullable();
             $table->string('latitude');
             $table->string('longitude');
