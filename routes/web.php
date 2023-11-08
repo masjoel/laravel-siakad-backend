@@ -25,14 +25,9 @@ Route::middleware(['auth'])->group(function () {
         return view('pages.app.dashboard-siakad', ['type_menu' => '']);
     })->name('home');
     Route::resource('user', UserController::class);
-});
-Route::middleware(['auth'])->group(function () {
     Route::resource('subject', SubjectController::class);
-});
-Route::middleware(['auth'])->group(function () {
     Route::resource('schedule', ScheduleController::class);
+    Route::get('createqrcode/{schedule}', [ScheduleController::class, 'createQrcode'])->name('createqrcode');
+    Route::put('generateqrcode/{schedule}', [ScheduleController::class, 'generateQrcode'])->name('generateqrcode');
 });
-
-Route::get('showqrcode', [QrCodeController::class, 'showQrcode'])->name('showqrcode');
-Route::get('createqrcode', [ScheduleController::class, 'createQrcode'])->name('createqrcode');
-Route::post('generateqrcode', [ScheduleController::class, 'generateQrcode'])->name('generateqrcode');
+// Route::get('showqrcode', [QrCodeController::class, 'showQrcode'])->name('showqrcode');

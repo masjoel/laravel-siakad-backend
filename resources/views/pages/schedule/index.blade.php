@@ -68,24 +68,24 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($schedules as $subject)
+                                        @forelse ($schedules as $schedule)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $subject->subject->title }}</td>
-                                            <td>{{ $subject->hari }}</td>
-                                            <td>{{ $subject->jam_mulai }}</td>
-                                            <td>{{ $subject->jam_selesai }}</td>
-                                            <td>{{ $subject->ruangan }}</td>
+                                            <td>{{ $schedule->subject->title }}</td>
+                                            <td>{{ $schedule->hari }}</td>
+                                            <td>{{ $schedule->jam_mulai }}</td>
+                                            <td>{{ $schedule->jam_selesai }}</td>
+                                            <td>{{ $schedule->ruangan }}</td>
                                             <td>
-                                                <a href="{{ route('createqrcode') }}" class="btn btn-primary">Generate
+                                                <a href="{{ route('createqrcode', $schedule->id) }}" class="btn btn-primary">Generate
                                                     QR Code</a>
                                             </td>
-                                            <td>{{ $subject->tahun_akademik }}</td>
-                                            <td>{{ $subject->semester }}</td>
+                                            <td>{{ $schedule->tahun_akademik }}</td>
+                                            <td>{{ $schedule->semester }}</td>
                                             <td>
-                                                <a href="{{ route('subject.edit', $subject->id) }}"
+                                                <a href="{{ route('subject.edit', $schedule->id) }}"
                                                     class="btn btn-warning">Edit</a>
-                                                <form action="{{ route('subject.destroy', $subject->id) }}"
+                                                <form action="{{ route('subject.destroy', $schedule->id) }}"
                                                     method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')

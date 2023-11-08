@@ -22,28 +22,29 @@ class ScheduleController extends Controller
     }
 
     //create qrcode
-    public function createQrcode()
+    public function createQrcode(Schedule $schedule)
     {
-        return view('pages.schedule.qrcode');
+        $code = $schedule->kode_absensi;
+        return view('pages.schedule.qrcode', compact('code'))->with('schedule', $schedule);
     }
 
     // //generate qrcode
-    public function generateQrcode(Request $request)
+    public function generateQrcode(Request $request, Schedule $schedule)
     {
         $request->validate([
             'code' => 'required',
-
         ]);
-
+        $schedule->update([
+            'kode_absensi' => $request->code,
+        ]);
         $code = $request->code;
-
         return view('pages.schedule.show-qrcode', compact('code'));
     }
 
     //create
     public function create()
     {
-        return view('schedule.create');
+        return view('pages.schedule.create');
     }
 
     //store
